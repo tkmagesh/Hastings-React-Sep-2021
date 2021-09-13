@@ -22,3 +22,59 @@
             Server Sent Events
             WebSocket
             WebRTC
+
+In JSX
+    Every open tag must have a corresponding closing tag
+    Use 'htmlFor' in place of 'for'
+    Use 'className' in place of 'class'
+
+React Component
+    Encapusation of Presentation + UI Behavior + State
+
+
+ES5
+    Data Types
+        number, string, boolean, object, undefined
+    Programming constructs
+        var, function, if, for, while, do-while, switch, break, continue, return, throw, try, catch, finally
+    APIs
+        Math, RegEx, Array, Date, Error, setTimeout, clearTimeout, setInterval, clearInterval
+
+Replacing JavaScript
+    Dart
+
+Highlevel language that compiles to JavaScript
+    CoffeeScript
+    TypeScript
+    Script#
+    Clojure
+
+Improvement over JS
+    ES6 (ECMAScript6 / ES2015 / ESNext)
+
+ES6 Features
+
+    1. let
+    2. const
+    3. Array destructuring
+    4. Rest operator (array)
+    5. Spread operator (array)
+    6. Object destructuring
+    7. Rest operator (Object)
+    8. Spread operator (Object)
+    9. Default Parameters
+    10. Arrow functions
+    11. parameter destructuring
+    12. Template Literals
+    13. Iterators (for..of)
+    14. Classes
+
+    http://es6-features.org/
+
+
+
+Array Methods:
+    1. forEach
+    2. filter
+    3. map
+    4. reduce
