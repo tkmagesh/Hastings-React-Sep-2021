@@ -1,0 +1,24 @@
+1. Better client-side infrastructure
+2. Powerful browsers
+    1. Http client
+    2. Render HTML document
+
+    Virutal OS (HTML5)
+        1. Data Storage
+            LocalStorage
+            SessionStorage
+            IndexedDB
+
+        2. File System
+            API
+
+        3. Multithreading capabilities
+            WebWorker
+
+        4. Offline application access
+            Service Worker
+
+        5. Networking
+            Server Sent Events
+            WebSocket
+            WebRTC
