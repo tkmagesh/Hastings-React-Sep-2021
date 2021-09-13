@@ -30,6 +30,7 @@
     <script src="jquery-3.6.0.min.js"></script>
     <script>
         //state & behavior 
+        //observable model
         function SalaryCalculatorModel(){
             var _data = {
                 basic : 0,
@@ -76,6 +77,7 @@
             
             window['model'] = new SalaryCalculatorModel();
 
+            //Reacting to user actions
             $('#txtBasic').on('change', function(){
                 model.set('basic', parseInt($(this).val()));
             });
@@ -96,6 +98,7 @@
                 model.calculate();
             });
 
+            //Reacting to model changes
             model.subscribe('basic', function(){
                 $('#tdBasic').text(model.get('basic'));
             });
