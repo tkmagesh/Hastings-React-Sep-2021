@@ -100,5 +100,29 @@ React Hooks
         useReducer
         useRef
 
+State
+    UI State
+        assists the presentational needs of the component
+        
+        Changes in this state is not required to be implicitly recognized by other parts of the application
+        
+        It is highly unlikely that this state is needed in other parts of the application
+
+        It is perfectly ok to maintain this in the component state
+
+    App State
+        Data that is used in the core business logic of the application
+
+        It is highly likely that this data is needed in other parts of the application
+
+        Changes in this state MUST be implicitly recognized by other parts of the application
+
+        DONOT maintain this in the component state
+
+Flex
+    Architectural guideline
+
+    
+
 
         
