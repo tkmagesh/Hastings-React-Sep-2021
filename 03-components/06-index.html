@@ -1,0 +1,52 @@
+<!-- 
+    Creating a dynamic list of React objects
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #root > h1{
+            color : gray;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Products extends React.Component {
+            render(){
+                const productNames = [ 'Pen', 'Pencil', 'Marker' ];
+                /* 
+                const productItems = [];
+                for (var i = 0; i < productNames.length; i++){
+                    const productName = productNames[i];
+                    //using the index as the key is not advisable and will be fixed in future examples
+                    const productItem = (<li key={i}>{productName}</li>);
+                    productItems.push(productItem);
+                } 
+                */
+                const productItems = productNames.map((productName, idx) => (<li key={idx}>{productName}</li>));
+                return(
+                    <>
+                        <h1>Products</h1>
+                        <hr/>
+                        <ul>
+                            {productItems}
+                        </ul>            
+                    </>
+                )
+            }
+        }
+        ReactDOM.render(<Products/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
