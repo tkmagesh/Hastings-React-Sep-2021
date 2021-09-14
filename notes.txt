@@ -78,3 +78,12 @@ Array Methods:
     2. filter
     3. map
     4. reduce
+
+Day-2 Agenda
+    Dynamic display of components
+    Create a list of components
+    Assignment : SalaryCalculator using React
+    Component Composition
+    Functional Components
+    Hooks
+    Product Management Use Case (to understand the need for state manager)

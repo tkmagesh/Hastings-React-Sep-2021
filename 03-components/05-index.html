@@ -1,0 +1,67 @@
+<!-- 
+    Dynamically changing the style in the component
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .positive{
+            color : green;
+        }
+        .negative {
+            color : red;
+        }
+    </style>
+    <script type="text/babel">
+        class Calculator extends React.Component{
+            state = {
+                n1 : 0,
+                n2 : 0,
+                result : 0
+            };
+
+            render(){
+                const { n1, n2, result } = this.state;
+                const resultEle = result >= 0 ? (<div className="positive">{result}</div>) : (<div className="negative">{result}</div>)
+                return(
+                    <div>
+                        <h1>Calculator</h1>
+                        <hr/>
+                        <div>
+                            <input type="number" onChange={evt => this.setState({ n1 : parseInt(evt.target.value)})} />
+                            <input type="number" onChange={evt => this.setState({ n2: parseInt(evt.target.value) })} />
+                        </div>
+                        <div>
+                            <input type="button" value="Add" onClick={() => this.setState({ result : n1 + n2})}/>
+                            <input type="button" value="Subtract" onClick={() => this.setState({ result : n1 - n2})}/>
+                            <input type="button" value="Multiply" onClick={() => this.setState({ result : n1 * n2})}/>
+                            <input type="button" value="Divide" onClick={() => this.setState({ result : n1 / n2})}/>
+                        </div>
+                        <div>
+                           {/*  { resultEle } */}
+                           <div className={result >= 0 ? 'positive' : 'negative'}>{result}</div>
+                        </div>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Calculator />, 
+            document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
