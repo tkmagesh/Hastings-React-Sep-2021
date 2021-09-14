@@ -1,0 +1,102 @@
+<!-- 
+    Creating a dynamic list of React objects
+        - adding new items to the list
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #root > h1{
+            color : gray;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* class Products extends React.Component {
+            state = {
+                productNames : [ 'Pen', 'Pencil', 'Marker' ],
+                newProductName : ''
+            };
+
+            onBtnAddClick = () => {
+                const { productNames, newProductName } = this.state;
+                const updatedProductNames = [ ...productNames, newProductName ];
+                this.setState({ productNames : updatedProductNames})
+            }
+
+            onBtnRemoveClick = (productToRemove) => {
+                 const { productNames, newProductName } = this.state;
+                const updatedProductNames = productNames.filter(productName => productName !== productToRemove)
+                this.setState({ productNames: updatedProductNames })
+            }
+            render(){
+                const { productNames } = this.state;
+                const productItems = productNames.map((productName, idx) => (
+                    <li key={idx}>
+                        <span> {productName} </span>
+                        <input type="button" value=" X " onClick={() => this.onBtnRemoveClick(productName)}/>
+                    </li>
+                ));
+                return(
+                    <>
+                        <h1>Products</h1>
+                        <hr/>
+                        <label>Product Name : </label>
+                        <input type="text" onChange={ evt => this.setState({newProductName : evt.target.value})} />
+                        <input type="button" value="Add Product" onClick={this.onBtnAddClick}/>
+                        <ul>
+                            {productItems}
+                        </ul>            
+                    </>
+                )
+            }
+        } */
+
+        const ProductItem = ({productName, onRemove}) => (
+            <li>
+                <span> {productName} </span>
+                <input type="button" value=" X " onClick={() => onRemove(productName)} />
+            </li>
+        );
+        
+
+        const Products = () => {
+            const [productNames, setProductNames] = React.useState([]);
+            const [newProductName, setNewProductName] = React.useState('');
+            const onBtnRemoveClick = (productToRemove) => {
+                const updatedProductNames = productNames.filter(productName => productName !== productToRemove)
+                setProductNames(updatedProductNames)
+            };
+            
+            const productItems = productNames.map((productName, idx) => (
+               <ProductItem key={idx} productName={productName} onRemove={onBtnRemoveClick}/>
+            ));
+            
+            return (
+                <>
+                    <h1>Products</h1>
+                    <hr />
+                    <label>Product Name : </label>
+                    <input type="text" onChange={evt => setNewProductName(evt.target.value )} />
+                    <input type="button" value="Add Product" onClick={() => setProductNames([...productNames, newProductName])} />
+                    <ul>
+                        {productItems}
+                    </ul>
+                </>
+            );
+        }
+        ReactDOM.render(<Products/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

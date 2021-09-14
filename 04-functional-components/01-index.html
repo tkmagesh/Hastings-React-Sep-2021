@@ -58,9 +58,9 @@
             const Greeter = () =>  {
                 const [message, setMessage] = React.useState('[Default greet message]');
                 const [userName, setUserName] = React.useState('');
-                const onBtnGreetClick = () => {
+                const onBtnGreetClick = React.useCallback(() => {
                     setMessage(`Hi ${userName}, Have a nice day!`);
-                };
+                });
                 return (
                     <div>
                         <h1>Greeter</h1>
