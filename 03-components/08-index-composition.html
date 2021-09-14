@@ -79,18 +79,21 @@
                 const { basic, hra, da, tax, salary } = model.toJSON();
                 return(
                     <section>
-                        <div className="field">
-                            <label htmlFor="">Basic :</label>
-                            <input type="number" value={basic} onChange={ evt => model.set('basic', parseInt(evt.target.value))} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">HRA :</label>
-                            <input type="number" value={hra} onChange={ evt => model.set('hra', parseInt(evt.target.value))} />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">DA :</label>
-                            <input type="number" value={da} onChange={ evt => model.set('da', parseInt(evt.target.value))} />
-                        </div>
+                        <SalaryCalculatorInput 
+                            labelText="Basic : " 
+                            data={basic}
+                            onValueChange={ value => model.set('basic', value)}
+                        />
+                        <SalaryCalculatorInput
+                            labelText="HRA : "
+                            data={hra}
+                            onValueChange={value => model.set('hra', value)}
+                        />
+                        <SalaryCalculatorInput
+                            labelText="DA : "
+                            data={da}
+                            onValueChange={value => model.set('da', value)}
+                        />
                         <div className="field">
                             <label htmlFor="">Tax :</label>
                             <input type="range" value={tax} onChange={ evt => model.set('tax', parseInt(evt.target.value))} min="0" max="30" />
@@ -103,6 +106,17 @@
                         <SalaryCalculatorResult {...{basic, hra, da, tax, salary}}/>
                     </section>
                 )
+            }
+        }
+        class SalaryCalculatorInput extends React.Component{
+            render(){
+                const { labelText, data, onValueChange } = this.props;
+                return (
+                    <div className="field">
+                        <label htmlFor="">{labelText}</label>
+                        <input type="number" value={data} onChange={evt => onValueChange(parseInt(evt.target.value))} />
+                    </div>
+                );
             }
         }
         class SalaryCalculatorResult extends React.Component{
