@@ -1,0 +1,75 @@
+<!-- 
+    Creating a dynamic list of React objects
+        - adding new items to the list
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        #root > h1{
+            color : gray;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+    
+        //Creating a custom hook
+        function useProducts(){
+            const [productNames, setProductNames] = React.useState([]);
+
+            const addNew = (newProductName) => {
+                setProductNames([...productNames, newProductName]);
+            };
+
+            const remove = (productToRemove) => {
+                const updatedProductNames = productNames.filter(productName => productName !== productToRemove)
+                setProductNames(updatedProductNames)
+            };
+
+            return [productNames, addNew, remove];
+        }
+
+        const ProductItem = ({productName, onRemove}) => (
+            <li>
+                <span> {productName} </span>
+                <input type="button" value=" X " onClick={() => onRemove(productName)} />
+            </li>
+        );
+        
+
+        const Products = () => {
+            const txtProductNameRef = React.useRef()
+            const [productNames, addNew, remove] = useProducts();
+
+            const productItems = productNames.map((productName, idx) => (
+               <ProductItem key={idx} productName={productName} onRemove={remove}/>
+            ));
+            
+            return (
+                <>
+                    <h1>Products</h1>
+                    <hr />
+                    <label>Product Name : </label>
+                    <input type="text" ref={txtProductNameRef} />
+                    <input type="button" value="Add Product" onClick={() => addNew(txtProductNameRef.current.value)} />
+                    <ul>
+                        {productItems}
+                    </ul>
+                </>
+            );
+        }
+        ReactDOM.render(<Products/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
