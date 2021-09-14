@@ -29,6 +29,12 @@
                 const updatedProductNames = [ ...productNames, newProductName ];
                 this.setState({ productNames : updatedProductNames})
             }
+
+            onBtnRemoveClick = (productToRemove) => {
+                 const { productNames, newProductName } = this.state;
+                const updatedProductNames = productNames.filter(productName => productName !== productToRemove)
+                this.setState({ productNames: updatedProductNames })
+            }
             render(){
                 /* 
                 const productItems = [];
@@ -43,7 +49,7 @@
                 const productItems = productNames.map((productName, idx) => (
                     <li key={idx}>
                         <span> {productName} </span>
-                        <input type="button" value=" X "/>
+                        <input type="button" value=" X " onClick={() => this.onBtnRemoveClick(productName)}/>
                     </li>
                 ));
                 return(
