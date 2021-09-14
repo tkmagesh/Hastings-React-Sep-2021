@@ -80,9 +80,9 @@ Array Methods:
     4. reduce
 
 Day-2 Agenda
-    Dynamic display of components
-    Create a list of components
-    Assignment : SalaryCalculator using React
+    Dynamic display of components (done)
+    Create a list of components (done)
+    Assignment : SalaryCalculator using React (done)
     Component Composition
     Functional Components
     Hooks
