@@ -75,6 +75,7 @@
         class SalaryCalculator extends React.Component{
             render(){
                 const { model } = this.props;
+                //const data = model.toJSON();
                 const { basic, hra, da, tax, salary } = model.toJSON();
                 return(
                     <section>
@@ -97,20 +98,30 @@
                         <div className="field">
                             <input type="button" value="Calculate" onClick={ () => model.calculate()}/>
                         </div>
-                        <div className="field">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>{basic}</td>
-                                        <td>{hra}</td>
-                                        <td>{da}</td>
-                                        <td>{tax}</td>
-                                        <td>{salary}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        {/* <SalaryCalculatorResult basic={basic} hra={hra} da={da} tax={tax} salary={salary}/> */}
+                        {/* <SalaryCalculatorResult {...data}/> */}
+                        <SalaryCalculatorResult {...{basic, hra, da, tax, salary}}/>
                     </section>
+                )
+            }
+        }
+        class SalaryCalculatorResult extends React.Component{
+            render(){
+                const { basic, hra , da, tax, salary } = this.props;
+                return(
+                    <div className="field">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>{basic}</td>
+                                    <td>{hra}</td>
+                                    <td>{da}</td>
+                                    <td>{tax}</td>
+                                    <td>{salary}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 )
             }
         }
