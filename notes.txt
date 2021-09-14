@@ -83,7 +83,22 @@ Day-2 Agenda
     Dynamic display of components (done)
     Create a list of components (done)
     Assignment : SalaryCalculator using React (done)
-    Component Composition
+    Component Composition (done)
     Functional Components
     Hooks
     Product Management Use Case (to understand the need for state manager)
+
+
+React Hooks
+    Functions created to handle side effects in functional components
+    Hook function names must start with 'use'
+    Builtin Hooks
+        useState
+        useEffect
+        useMemo
+        useCallback
+        useReducer
+        useRef
+
+
+        

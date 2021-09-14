@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Components</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* class Greeter extends React.Component {
+                //state
+                state = {
+                    message: '[Default greet message]',
+                    userName: ''
+                };
+
+                //UI Behavior
+                onBtnGreetClick = () => {
+                    this.setState({
+                        message: `Hi ${this.state.userName}, Have a nice day!`
+                    }, () => {
+                        console.log(this.state.message);
+                    });
+                };
+
+                onTxtUserNameChange = (evt) => {
+                    this.setState({
+                        userName: evt.target.value
+                    });
+                }
+
+                //presentation
+                render() {
+                    return (
+                        <div>
+                            <h1>Greeter</h1>
+                            <hr />
+                            <label htmlFor="">User Name :</label>
+                            <input type="text" onChange={this.onTxtUserNameChange} />
+                            <input type="button" value="Greet" onClick={this.onBtnGreetClick} />
+                            <GreeterMessage message={this.state.message} />
+                        </div>
+                    )
+                }
+            } */
+
+            /* 
+                componentWillmount
+                componentDidMount
+                shouldComponentUpdate
+                render()
+                componentWillunmount
+            
+            */
+
+            const Greeter = () =>  {
+                const [message, setMessage] = React.useState('[Default greet message]');
+                const [userName, setUserName] = React.useState('');
+                const onBtnGreetClick = () => {
+                    setMessage(`Hi ${userName}, Have a nice day!`);
+                };
+                return (
+                    <div>
+                        <h1>Greeter</h1>
+                        <hr />
+                        <label htmlFor="">User Name :</label>
+                        <input type="text" onChange={ evt => setUserName(evt.target.value)} />
+                        <input type="button" value="Greet" onClick={onBtnGreetClick} />
+                        <GreeterMessage message={message} />
+                    </div>
+                )
+            }
+            
+
+            /* 
+            class GreeterMessage extends React.Component{
+                render() {
+                    const { message } = this.props;
+                    return(
+                        <div>{message}</div>
+                    )
+                }
+            } 
+            */
+
+            /* const GreeterMessage = (props) => {
+                const { message } = props;
+                return (
+                    <div>{message}</div>
+                )
+            } */
+
+            /* 
+            const GreeterMessage = ({ message }) => {
+                var x = 100;
+                return (
+                    <div>{message}</div>
+                )
+            } 
+            */
+
+            const GreeterMessage = ({ message }) => (
+                <div>{message}</div>
+            );
+            
+
+            ReactDOM.render(
+                <Greeter />,
+                document.getElementById('root')
+            );
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>
