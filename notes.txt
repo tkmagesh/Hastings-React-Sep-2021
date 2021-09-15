@@ -132,4 +132,37 @@ Function Invocation patterns
 
 create-react-app
 
-[sudo] npm install yarn -g
+sudo npm install yarn -g
+
+yarn create react-app app-name
+
+ES6
+    Everything defined in a JS file is considered 'private' to that file
+    The public entities have to be explicitly 'exported'
+    public entities from other files have to be explicitly 'imported' to use them.
+
+src
+    /bugs
+        /actions
+            addNew.js
+            toggle.js
+            .
+            .
+            index.js
+
+        /reducers
+            bugsReducer.js
+
+        /components
+            bug-stats.jsx
+            bug-list.jsx
+            bug-edit.jsx
+            bug-sort.jsx
+            bug-item.jsx
+
+        index.js (BugTracker)
+
+    /store
+        index.js
+
+    
