@@ -1,39 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { bindActionCreators } from 'redux';
-
-import bugActionCreators from './bugs/actions';
-import projectActionCreators from './projects/actions';
 
 import appStore from './store';
 import BugTracker from './bugs';
 import Projects from './projects';
+import { Provider } from 'react-redux';
 
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
+   
+ReactDOM.render(
+  <Provider store={appStore}>
+    <React.StrictMode>
+      <h1>Bug Tracker</h1>
+      <hr/>
+      <Projects/>
+      <BugTracker/>
+    </React.StrictMode>
+  </Provider>
+    , document.getElementById('root')
+)
 
-const bugActionDispatchers = bindActionCreators(bugActionCreators, appStore.dispatch);
-const projectActionDispatchers = bindActionCreators(projectActionCreators, appStore.dispatch);
-
-function renderApp(){
-    const appState = appStore.getState();
-    const bugs = appState.bugsState;
-    const projects = appState.projectsState;
-    
-    ReactDOM.render(
-        <React.StrictMode>
-          <h1>Bug Tracker</h1>
-          <hr/>
-          <Projects projects={projects} {...projectActionDispatchers} />
-          <BugTracker bugs={bugs} {...bugActionDispatchers}/>
-        </React.StrictMode>
-        , document.getElementById('root')
-    )
-}
-
-renderApp();
-appStore.subscribe(renderApp);
 /* 
 ReactDOM.render(
   <React.StrictMode>

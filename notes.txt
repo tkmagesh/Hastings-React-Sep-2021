@@ -166,3 +166,20 @@ src
         index.js
 
     
+Container Components / Smart Components
+    Interface with the outside world (redux)
+    Pass on the data and action dispatchers to the presentation components
+    ex, BugTrackerComponent, ProjectsComponent
+
+Presentation Components / Dumb Components
+    Dont interface with outside world (redux)
+    Present the data received from the container component
+    ex: BugStats, BugSort, BugEdit, BugList, BugItem etc
+
+
+react-redux
+    connect()
+        facilitate the storeState & dispatch to us
+
+    Provider
+        facilitates the storeState & dispatch to the connected components

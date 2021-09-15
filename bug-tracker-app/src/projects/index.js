@@ -1,3 +1,7 @@
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import projectActionCreators from "./actions";
+
 const Projects = ({projects, addNew, remove}) => {
     return (
         <>
@@ -10,4 +14,15 @@ const Projects = ({projects, addNew, remove}) => {
         </>
     )
 }
-export default Projects;
+
+function mapStateToProps(appState){
+    const projects = appState.projectsState;
+    return { projects : projects };
+}
+
+function mapDispatchToProps(dispatch){
+    const projectActionDispatchers = bindActionCreators(projectActionCreators, dispatch);
+    return projectActionDispatchers;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
