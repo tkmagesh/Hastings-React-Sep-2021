@@ -9,41 +9,42 @@ import BugList from './components/bug-list';
 import bugActionCreators from './actions';
 
 //Using hooks
-/* 
+
 const BugTracker = () => {
     const dispatch = useDispatch();
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
     const { addNew, remove, toggle, removeClosed} = bugActionDispatchers;
-    const bugs = useSelector(appState => appState.bugsState);
+    const { bugs, projects} = useSelector(appState => ({ bugs : appState.bugsState, projects : appState.projectsState}));
     return (
         <>
             <h3>Bugs</h3>
             <BugStats bugs={bugs}/>
             <BugSort/>
-            <BugEdit addNew={addNew}/>
+            <BugEdit addNew={addNew} projects={projects}/>
             <BugList {...{bugs, remove, toggle, removeClosed}}/>
         </>
     )
 };
 
 export default BugTracker; 
-*/
+
 
 /* **************************************************************** */
-const BugTracker = ({bugs, addNew, remove, toggle, removeClosed}) => {
+/* const BugTracker = ({bugs, addNew, remove, toggle, removeClosed, projects}) => {
     return (
         <>
             <h3>Bugs</h3>
             <BugStats bugs={bugs}/>
             <BugSort/>
-            <BugEdit addNew={addNew}/>
+            <BugEdit addNew={addNew} projects={projects}/>
             <BugList {...{bugs, remove, toggle, removeClosed}}/>
         </>
     )
 };
 function mapStateToProps(appState){
-     const bugs = appState.bugsState;
-     return { bugs : bugs}
+     const bugs = appState.bugsState,
+        projects = appState.projectsState;
+     return { bugs : bugs, projects : projects };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -52,5 +53,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (BugTracker) ;
-
+ */
 /* **************************************************************** */
