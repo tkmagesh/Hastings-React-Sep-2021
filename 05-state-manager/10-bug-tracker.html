@@ -44,10 +44,10 @@
     <!-- 
         (done) 1. Add bugs
         (done) 2. List the added bugs
-        3. Toggle the 'closed' status of any bug
-        4. Remove a bug
-        5. Remove 'closed' bugs
-        6. Display stats (# of closed bugs / total # bugs)
+        (done) 3. Toggle the 'closed' status of any bug
+        (done) 4. Remove a bug
+        (done) 5. Remove 'closed' bugs
+        (done) 6. Display stats (# of closed bugs / total # bugs)
         7. Sort the bugs
         8. Search the bugs (assignment)
         9. Persist the bugs in the server
@@ -77,6 +77,15 @@
                 const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed };
                 const action = { type : 'BUG_UPDATE', payload : toggledBug };
                 return action;
+            },
+            remove(bugToRemove){
+                const action = { type : 'BUG_REMOVE', payload : bugToRemove };
+                return action;
+            },
+            removeClosed(bugs /* TO BE FIXED */){
+                const bugsToRetain = bugs.filter(bug => bug.isClosed === false);
+                const action = { type : 'BUG_INIT', payload : bugsToRetain };
+                return action;
             }
         }
 
@@ -86,12 +95,18 @@
                     return [...currentState, action.payload];
                 case 'BUG_UPDATE':
                     return currentState.map(bug => bug.id === action.payload.id ? action.payload : bug);
+                case 'BUG_REMOVE':
+                    return currentState.filter(bug => bug.id !== action.payload.id);
+                case 'BUG_INIT':
+                    return action.payload;
             }
             return currentState;
         }
 
-        const BugTracker = ({bugs, addNew, toggle}) => {
+        const BugTracker = ({bugs, addNew, toggle, remove, removeClosed}) => {
             const [newBugName, setNewBugName] = React.useState('');
+
+            {/* BugItem */ }
             const bugItems = bugs.map(bug => (
                  <li key={bug.id}>
                     <span 
@@ -99,17 +114,19 @@
                         onClick={ () => toggle(bug)}
                     >{bug.name}</span>
                     <div className="datetime">{bug.createdAt.toString()}</div>
-                    <input type="button" value="Remove" />
+                    <input type="button" value="Remove" onClick={ () => remove(bug)} />
                 </li>
             ));
-
+            const closedCount = bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0);
             return (
                 <>
+                    {/* BugStats */}
                     <section className="stats">
-                        <span className="closed">1</span>
+                        <span className="closed">{closedCount}</span>
                         <span> / </span>
                         <span>{bugs.length}</span>
                     </section>
+                    {/* BugSort */}
                     <section className="sort">
                         <label htmlFor="">Order By :</label>
                         <select name="" id="">
@@ -119,16 +136,18 @@
                         <label htmlFor="">Descending? :</label>
                         <input type="checkbox" name="" id="" />
                     </section>
+                    {/* BugEdit */}
                     <section className="edit">
                         <label htmlFor="">Bug Name :</label>
                         <input type="text" onChange={ evt => setNewBugName(evt.target.value)} />
                         <input type="button" value="Add New" onClick={ () => addNew(newBugName)} />
                     </section>
+                    {/* BugList */}
                     <section className="list">
                         <ol>
                            {bugItems}
                         </ol>
-                        <input type="button" value="Remove Closed" />
+                        <input type="button" value="Remove Closed" onClick={() => removeClosed(bugs)} />
                     </section>
                 </>
             )
