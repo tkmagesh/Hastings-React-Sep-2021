@@ -183,3 +183,9 @@ react-redux
 
     Provider
         facilitates the storeState & dispatch to the connected components
+
+
+Redux dev tools
+    https://github.com/zalmoxisus/redux-devtools-extension
+Chrome extension
+    https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
