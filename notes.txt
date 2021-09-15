@@ -130,4 +130,6 @@ Function Invocation patterns
                 this -> global scope (window)
 
 
-        
+create-react-app
+
+[sudo] npm install yarn -g
