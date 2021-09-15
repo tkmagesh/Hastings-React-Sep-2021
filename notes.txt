@@ -122,7 +122,12 @@ State
 Flex
     Architectural guideline
 
-    
+Function Invocation patterns
+    When a function is invoked    
+        1. as a method of an obj
+                this -> obj
+        2. as a function
+                this -> global scope (window)
 
 
         
