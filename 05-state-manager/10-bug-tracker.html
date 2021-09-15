@@ -42,8 +42,8 @@
     </style>
     <title>Bug Tracker</title>
     <!-- 
-        1. Add bugs
-        2. List the added bugs
+        (done) 1. Add bugs
+        (done) 2. List the added bugs
         3. Toggle the 'closed' status of any bug
         4. Remove a bug
         5. Remove 'closed' bugs
@@ -59,13 +59,46 @@
      <script src="babel.min.js"></script>
      <script src="redux.js"></script>
      <script type="text/babel">
-        const BugTracker = () => {
+        //TO BE FIXED
+        let _currentBugId = 0;
+
+        const bugActionCreators = {
+            addNew(bugName){
+                const newBug = {
+                    id : ++_currentBugId,
+                    name : bugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                }
+                const action = { type : 'BUG_ADD_NEW', payload : newBug };
+                return action;
+            }
+        }
+
+        function bugsReducer(currentState = [], action){
+            switch(action.type){
+                case 'BUG_ADD_NEW':
+                    return [...currentState, action.payload];
+            }
+            return currentState;
+        }
+
+        const BugTracker = ({bugs, addNew}) => {
+            const [newBugName, setNewBugName] = React.useState('');
+            const bugItems = bugs.map(bug => (
+                 <li key={bug.id}>
+                    <span className="bugname">{bug.name}</span>
+                    <div className="datetime">{bug.createdAt.toString()}</div>
+                    <input type="button" value="Remove" />
+                </li>
+            ));
+
             return (
                 <>
                     <section className="stats">
                         <span className="closed">1</span>
                         <span> / </span>
-                        <span>2</span>
+                        <span>{bugs.length}</span>
                     </section>
                     <section className="sort">
                         <label htmlFor="">Order By :</label>
@@ -78,31 +111,33 @@
                     </section>
                     <section className="edit">
                         <label htmlFor="">Bug Name :</label>
-                        <input type="text" name="" id="" />
-                        <input type="button" value="Add New" />
+                        <input type="text" onChange={ evt => setNewBugName(evt.target.value)} />
+                        <input type="button" value="Add New" onClick={ () => addNew(newBugName)} />
                     </section>
                     <section className="list">
                         <ol>
-                            <li>
-                                <span className="bugname">[Bug - 1]</span>
-                                <div className="datetime">[created at]</div>
-                                <input type="button" value="Remove" />
-                            </li>
-                            <li>
-                                <span className="bugname closed">[Bug - 2]</span>
-                                <div className="datetime">[created at]</div>
-                                <input type="button" value="Remove" />
-                            </li>
+                           {bugItems}
                         </ol>
                         <input type="button" value="Remove Closed" />
                     </section>
                 </>
             )
         }
-        ReactDOM.render(
-            <BugTracker />
-            , document.getElementById('root')
-        )
+
+        const store = Redux.createStore(bugsReducer);
+
+        const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
+
+        function renderApp(){
+            const bugs = store.getState();
+            ReactDOM.render(
+                <BugTracker bugs={bugs} {...bugActionDispatchers}/>
+                , document.getElementById('root')
+            )
+        }
+
+        renderApp();
+        store.subscribe(renderApp);
      </script>
 </head>
 <body>
