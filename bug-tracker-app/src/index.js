@@ -6,8 +6,9 @@ import BugTracker from './bugs';
 import Projects from './projects';
 import { Provider } from 'react-redux';
 import Home from './home';
-
+import NotFound from './not-found';
 import './index.css';
+import Notification from './notification';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -18,11 +19,12 @@ ReactDOM.render(
     <React.StrictMode>
       <h1>Bug Tracker</h1>
       <hr/>
+      <Notification/>
       <Router>
         <div>
-          <span> <Link to="/"> Home </Link> </span>
-          <span> <Link to="/projects"> Projects </Link> </span>
-          <span> <Link to="/bugs"> Bugs </Link> </span>
+          <span> [ <Link to="/"> Home </Link> ] </span>
+          <span> [ <Link to="/projects"> Projects </Link> ] </span>
+          <span> [ <Link to="/bugs"> Bugs </Link> ] </span>
         </div>
         <Switch>
           <Route exact path="/">
@@ -33,6 +35,9 @@ ReactDOM.render(
           </Route>
           <Route path="/bugs">
             <BugTracker/>
+          </Route>
+          <Route path="**">
+            <NotFound/>
           </Route>
         </Switch>
       </Router>

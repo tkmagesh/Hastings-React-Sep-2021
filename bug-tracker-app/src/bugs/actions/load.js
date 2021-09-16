@@ -1,12 +1,12 @@
 import bugApi from '../services/bug-api';
 
 //processed by the promiseMiddleware
-export async function load(){
+/* export async function load(){
     const bugs = await bugApi.getAll();
     const action = { type : 'BUG_INIT', payload : bugs };
     return action;
 }
-
+ */
 
 /* import * as axios from "axios";
 export function load(){
@@ -31,3 +31,18 @@ export function load(){
     //    });
     
 } */
+
+export function load(){
+    return function(dispatch, getState){
+        bugApi
+        .getAll()
+        .then(bugs => {
+            const action = { type : 'BUG_INIT', payload : bugs };
+            dispatch(action);
+        })
+        .catch(error => {
+           const action = { type : 'ADD_NOTIFICATION', payload : error.message};
+           dispatch(action);
+        });
+    }
+}

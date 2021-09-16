@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const endPoint = 'http://localhost:3030/bugs';
+const endPoint = 'http://localhost:3040/bugs';
 
 /* function getAll(){
     return axios.get(endPoint)
