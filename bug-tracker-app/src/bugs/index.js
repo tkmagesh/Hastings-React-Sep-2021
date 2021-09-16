@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -15,10 +16,12 @@ const BugTracker = () => {
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
     const { addNew, remove, toggle, removeClosed, load } = bugActionDispatchers;
     const { bugs, projects} = useSelector(appState => ({ bugs : appState.bugsState, projects : appState.projectsState}));
+    useEffect(() => {
+        load();
+    }, []);
     return (
         <>
             <h3>Bugs</h3>
-            <input type="button" value="LOAD BUGS" onClick={load} />
             <BugStats bugs={bugs}/>
             <BugSort/>
             <BugEdit addNew={addNew} projects={projects}/>
