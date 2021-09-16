@@ -209,3 +209,25 @@ const bugs = response.data;
 console.table(bugs);
 
 yarn add redux-logger  redux-thunk
+
+
+https://www.amazon.com
+https://www.amazon.com/electronics
+https://www.amazon.com/electronics/mobile-phones
+https://www.amazon.com/electronics/mobile-phones/google
+https://www.amazon.com/electronics/mobile-phones/google/pixel
+
+
+https://www.amazon.com/electronics/mobile-phones/google/pixel/reviews
+
+
+Outlook
+Outlook/Inbox
+Outlook/Inbox/Projects
+Outlook/Inbox/Projects/ExpenseManager
+Outlook/Inbox/Projects/ExpenseManager/bugs
+Outlook/Inbox/Projects/ExpenseManager/bugs/bug-101
+
+
+
+
