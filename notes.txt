@@ -207,3 +207,5 @@ axios.get('http://localhost:3030/bugs')
 const response = await axios.get('http://localhost:3030/bugs')
 const bugs = response.data;
 console.table(bugs);
+
+yarn add redux-logger  redux-thunk
