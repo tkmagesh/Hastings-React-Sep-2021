@@ -11,7 +11,7 @@ const BugEdit = ({addNew, projects}) => {
             <select onChange={ evt => setSelectedProject(evt.target.value)}>
                 <option value="">Select Project</option>
                 {
-                    projects.map(project => (<option value={project.id}>{project.name}</option>))
+                    projects.map(project => (<option value={project.id} key={project.id}>{project.name}</option>))
                 }
             </select>
             <input type="button" value="Add New" onClick={() => addNew(newBugName, selectedProject)} />
