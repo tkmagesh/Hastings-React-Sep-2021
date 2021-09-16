@@ -22,6 +22,7 @@ export function load(){
     //        })
     //}
     
+    //using the promiseMiddleware
     //return axios.get('http://localhost:3030/bugs')
     //    .then(response => response.data)
     //    .then(bugs => {
