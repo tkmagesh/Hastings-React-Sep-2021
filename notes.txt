@@ -189,3 +189,21 @@ Redux dev tools
     https://github.com/zalmoxisus/redux-devtools-extension
 Chrome extension
     https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+
+var p = axios.get('http://localhost:3030/bugs');
+var p2 = p.then(function(response){
+    return response.data;
+});
+p2.then(function(bugs){
+    console.table(bugs);
+})
+
+axios.get('http://localhost:3030/bugs')
+    .then(response => response.data)
+    .then(bugs => console.table(bugs))
+
+
+const response = await axios.get('http://localhost:3030/bugs')
+const bugs = response.data;
+console.table(bugs);

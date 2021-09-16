@@ -9,7 +9,8 @@ import { addNew } from './add-new'
 import { toggle } from './toggle';
 import { remove } from './remove';
 import { removeClosed } from './remove-closed';
+import { load } from './load';
 
-const bugActionCreators = { addNew, toggle, remove, removeClosed };
+const bugActionCreators = { addNew, toggle, remove, removeClosed, load };
 
 export default bugActionCreators;

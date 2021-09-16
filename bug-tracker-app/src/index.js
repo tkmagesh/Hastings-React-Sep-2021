@@ -9,7 +9,10 @@ import { Provider } from 'react-redux';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-   
+
+import * as axios from 'axios';
+window['axios'] = axios;
+
 ReactDOM.render(
   <Provider store={appStore}>
     <React.StrictMode>

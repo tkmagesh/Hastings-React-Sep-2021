@@ -13,11 +13,12 @@ import bugActionCreators from './actions';
 const BugTracker = () => {
     const dispatch = useDispatch();
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
-    const { addNew, remove, toggle, removeClosed} = bugActionDispatchers;
+    const { addNew, remove, toggle, removeClosed, load } = bugActionDispatchers;
     const { bugs, projects} = useSelector(appState => ({ bugs : appState.bugsState, projects : appState.projectsState}));
     return (
         <>
             <h3>Bugs</h3>
+            <input type="button" value="LOAD BUGS" onClick={load} />
             <BugStats bugs={bugs}/>
             <BugSort/>
             <BugEdit addNew={addNew} projects={projects}/>
