@@ -229,5 +229,10 @@ Outlook/Inbox/Projects/ExpenseManager/bugs
 Outlook/Inbox/Projects/ExpenseManager/bugs/bug-101
 
 
+Organize the tests
+    Arrange
 
+    Act
+
+    Assert
 
